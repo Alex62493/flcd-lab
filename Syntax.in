@@ -1,0 +1,47 @@
+<program> ::= $ <commands> ~$
+
+<commands> ::= <command>; | <command>;<commands>
+
+<command> ::= <declaration> | <read> | <write> | <if> | <atribution> | <while>
+
+<declaration> ::= #<type> <identifier> | #<type> <identifier>(<no>) | #int <identifier> is <signedNo>| #char <identifier> is '<alphanumeric>' | #str <identifier> is "<sequence>" | #bool <identifier> is <boolVal>
+
+<read> ::= get(<identifier>)
+
+<write> ::= post(<identifier>)
+
+<atribution> ::= <identifier> is <boolVal> | <identifier> is <equation> | <identifier> is '<alphanumeric>' | <identifier> is "<sequence>" | <identifier>.(<equation>) is <boolVal> | <identifier>.(<equation>) is <equation> | <identifier>.(<equation>) is '<alphanumeric>' | <identifier>.(<equation>) is "<sequence>" | <identifier>.<no> is <boolVal> | <identifier>.<no> is <equation> | <identifier>.<no> is '<alphanumeric>' | <identifier>.<no> is "<sequence>" | <identifier>.<identifier> is <boolVal> | <identifier>.<identifier> is <equation> | <identifier>.<identifier> is '<alphanumeric>' | <identifier>.<identifier> is "<sequence>"
+
+<if> ::= assume (<comparison>): [ <commands> ] | assume (<comparison>) [ <commands> ] <otherwise>
+
+<otherwise> ::= otherwise [ <commands> ] | otherwise <if>
+
+<while> ::= unless (<comparison>) do: [ <commands> ]
+
+<comparison> ::= <boolVal> | <equation> | <nrOnlyComparison> | (<comparison>) | <comparison> || <comparison> | <comparison> && <comparison> | <comparison> = <comparison>
+
+<nrOnlyComparison> ::= <equation> > <equation> | <equation> >= <equation> | <equation> < <equation> | <equation> <= <equation>
+
+<equation> ::= <identifier> | <signedNo> | (<equation>) | <equation> + <equation> | <equation> - <equation> | <equation> / <equation> | <equation> * <equation>
+
+<type> ::=  int | char | str | bool
+
+<identifier> ::= <letter> | <letter><sequence>
+
+<sequence> ::= <alphanumeric> | <sequence><alphanumeric>
+
+<alphanumeric> ::= <letter> | <digit>
+
+<signedNo> ::= 0 | -<no> | +<no> | <no>
+
+<no> ::= <nonzerodigit> | <nonzerodigit><nrsequence>
+
+<nrsequence> ::= <digit> | <digit><nrsequence>
+
+<letter> ::=  A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+
+<digit>  ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<nonzerodigit> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<boolVal> = TRUE | FALSE

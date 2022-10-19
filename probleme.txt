@@ -1,0 +1,115 @@
+$
+	#int a;
+	#int b;
+	#int c;
+
+	get(a);
+	get(b);
+
+	unless(a = b) do:
+	[
+		assume(a > b):
+			a is a - b;
+		otherwise:
+			b is b - a;
+	]
+
+	c is a * b / c;
+	post(c);
+~$
+
+--------------------------------------------------------------------
+
+$
+	#int a;
+	#int b;
+	#int c;
+
+	get(a);
+	get(b);
+	get(c);
+
+	assume((b > a && a > c) || (c > a && a > b)):
+	[
+		post(a);
+	]
+	otherwise assume((a > b && b > c) || (c > b && b > a)):
+	[
+		post(b);
+	]
+	otherwise:
+	[
+		post(c);
+	]
+~$
+
+--------------------------------------------------------------------
+
+$
+	#int l(10);
+	#int i is 1;
+	#int state;
+	#bool ok is TRUE;
+
+	unless (i >= 10):
+	[
+		get(l.i);
+		i is i+1;
+	]
+	
+	i is 0;
+
+	assume (l.0 < l.1):
+	[
+		state is -1;
+	]
+	otherwise assume (l.0 > l.1):
+	[
+		state is 1;
+	]
+	otherwise:
+	[
+		ok is FALSE;
+	]
+
+	unless (ok = FALSE || i >= 10):
+	[
+		assume(l.i * state < l.(i+1) * state):
+		[
+			status is status * -1;
+			i is i + 1;
+		]
+		otherwise:
+		[
+			ok is FALSE;
+		]
+	]
+
+	post(ok);		
+~$
+
+--------------------------------------------------------------------
+
+$
+	#int a
+	#int b
+	#int c
+
+	get(a)
+	get(b)
+
+	unless(a , b) do:
+	[
+		assume(a > b):
+		[
+			a is a - b
+		]
+		otherwise:
+		[
+			b is b - a
+		]
+	]
+
+	c is a * b / c
+	post(c)
+~$
