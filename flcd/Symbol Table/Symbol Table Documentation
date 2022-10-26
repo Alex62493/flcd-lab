@@ -1,0 +1,27 @@
+VALUE_TYPE: an enumerator containing all possible data types
+
+VALUE: an union that is used to universally store any possible data type
+
+SYMBOL_TABLE_NODE: a node for the binary search tree
+                   since it's a node in a binary tree, it contains references to the left and right branches
+                   it also contains the name of the identifier/constant
+                   and it's value which is represented as a VALUE and VALUE_TYPE pair, such as:
+                        VALUE_TYPE -> VALUE
+                        BOOL       -> boolVal
+                        INT        -> intVal
+                        CHAR       -> charVal
+                        STRING     -> stringVal
+                        *NONE is reserved for the scope of searching for an element
+
+SymbolTable: a class containing a symbol table represented as a binary search tree
+             it has two fields:
+                size: the nr of elements in the symbol table
+                startNode: a pointer to a SYMBOL_TABLE_NODE representing the root of the binary tree
+
+             it contains the following public method:
+                long long addElementToSymbolTable(char* name, VALUE_TYPE type, VALUE value):
+                    arguments: the name of an identifier/constant, the VALUE_TYPE and a VALUE
+                    when called, it will either:
+                        add a new node to the symbol table
+                        update the existing one for that name
+                    it will return the position of the element in the symbol table in a long long int that represents its position in the symbol table
