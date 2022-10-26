@@ -10,20 +10,17 @@ SymbolTable::SymbolTable() {
     size = 0;
 }
 
-long long SymbolTable::checkForExistingNode(char *name, SYMBOL_TABLE_NODE* &node) {
+long long SymbolTable::checkForExistingNode(const std::string& name) {
     SYMBOL_TABLE_NODE* currentNode = startNode;
     long long pos = 1;
-    node = nullptr;
 
     while (currentNode)
     {
-        int compareValue = std::strcmp(name, currentNode->name);
-        if (compareValue == 0)
+        if (name == currentNode->name)
         {
             return pos;
-            node = currentNode;
         }
-        else if (compareValue < 0)
+        else if (name < currentNode->name)
         {
             pos <<= 1;
             currentNode = currentNode->left;
@@ -38,26 +35,21 @@ long long SymbolTable::checkForExistingNode(char *name, SYMBOL_TABLE_NODE* &node
     return 0;
 }
 
-long long SymbolTable::addElementToSymbolTable(char *name, VALUE_TYPE type, VALUE value) {
+long long SymbolTable::addElementToSymbolTable(const std::string& name) {
     SYMBOL_TABLE_NODE* lastNode = nullptr;
     SYMBOL_TABLE_NODE* currentNode = startNode;
-    SYMBOL_TABLE_NODE* existingNode = nullptr;
     long long pos = 1;
-    long long existingPos = checkForExistingNode(name, existingNode);
+    long long existingPos = checkForExistingNode(name);
 
-    if (existingPos && existingNode)
+    if (existingPos)
     {
-        if (type != NONE)
-            existingNode->value = value;
         return existingPos;
     }
 
     while (currentNode) {
         lastNode = currentNode;
 
-        int compareValue = std::strcmp(name, currentNode->name);
-
-        if (compareValue < 0)
+        if (name < currentNode->name)
         {
             pos *= 2;
             currentNode = currentNode->left;
@@ -71,13 +63,10 @@ long long SymbolTable::addElementToSymbolTable(char *name, VALUE_TYPE type, VALU
 
     auto* node = new SYMBOL_TABLE_NODE;
 
-    node->name = new char[std::strlen(name) + 1];
-    std::strcpy(node->name, name);
+    node->name = name;
 
     node->right = nullptr;
     node->left = nullptr;
-    node->valueType = type;
-    node->value = value;
 
     if (lastNode)
     {
