@@ -2,13 +2,14 @@
 #define FLCD_SYMBOLTABLE_H
 
 #include <cstring>
+#include <string>
 
+/*
 enum VALUE_TYPE {
     BOOL,
     INT,
     CHAR,
-    STRING,
-    NONE
+    STRING
 };
 
 union VALUE{
@@ -17,13 +18,14 @@ union VALUE{
     char charVal;
     char* stringVal;
 };
+*/
 
 struct SYMBOL_TABLE_NODE {
-    char* name;
+    std::string name;
     SYMBOL_TABLE_NODE* left;
     SYMBOL_TABLE_NODE* right;
-    VALUE_TYPE valueType;
-    VALUE value;
+    //VALUE_TYPE valueType;
+    //VALUE value;
 };
 
 class SymbolTable {
@@ -31,12 +33,12 @@ private:
     int size;
     SYMBOL_TABLE_NODE* startNode;
 
-    long long checkForExistingNode(char* name, SYMBOL_TABLE_NODE* &node);
+    long long checkForExistingNode(const std::string& name);
 
 public:
     SymbolTable();
 
-    long long addElementToSymbolTable(char* name, VALUE_TYPE type, VALUE value);
+    long long addElementToSymbolTable(const std::string& name);
 };
 
 
