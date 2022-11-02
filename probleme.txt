@@ -54,7 +54,7 @@ $
 	unless (i >= 10):
 	[
 		get(l.i);
-		i is i+1;
+		i is i + 1;
 	]
 	
 	i is 0;
@@ -74,7 +74,7 @@ $
 
 	unless (ok = FALSE || i >= 10):
 	[
-		assume(l.i * state < l.(i+1) * state):
+		assume(l.i * state < l.(i + 1) * state):
 		[
 			status is status * -1;
 			i is i + 1;
