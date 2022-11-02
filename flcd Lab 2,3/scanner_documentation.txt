@@ -1,0 +1,32 @@
+Scanner Documentation:
+    Fields:
+        head - the head of a linked list that contains the elements for the pif (an element is consisted of a token and a position in memory);
+        tail - the tail of the above mentioned linked list;
+        identifierSymbolTable - a symbol table for all the identifiers;
+        constantSymbolTable - a symbol table for all the constants;
+        
+    Methods:
+        int startScanning(const std::string& filePath, const std::vector<std::string>& keywords)
+            Arguments:
+                IN:  filePath: string         - the (absolute/relative) path to the file that contains the code that is evaluated
+                IN:  keywords: vector<string> - the list of reserved keywords used by the language
+                OUT: unknownMember: string    - in case of success, this will be an empty string, otherwise it will be the token that caused an error
+                
+            Returns:
+                0 if the scanner was runned successfully, the line where there an unknown token was found otherwise
+                
+            Use:
+                By giving the function the path to the file that needs to be evaluated and a list of reserved keywords, it will return either return 0, in which case the code was evaluated successfully or it returns the line and the token that caused an error
+                
+        void printResults(const std::string& pifFileName, const std::string& identifierStFile, const std::string& constStFile)
+            Arguments:
+                IN: pifFileName: string      - the (absolute/relative) path where the PIF will be written
+                IN: identifierStFile: string - the (absolute/relative) path where the symbol table for the identifiers will be written
+                IN: constStFile: string      - the (absolute/relative) path where the symbol table for the constants will be written
+                
+            Returns:
+                Nothing
+                
+            Use:
+                IMPORTANT: use only after calling startScanning, otherwise the files will be empty
+                This functions prints the PIF and the symbol tables to their respective files
