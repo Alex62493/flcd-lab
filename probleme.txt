@@ -100,7 +100,7 @@ $
 
 	unless(a , b) do:
 	[
-		assume(a > b):
+		1assume(a > b):
 		[
 			a is a - b
 		]
