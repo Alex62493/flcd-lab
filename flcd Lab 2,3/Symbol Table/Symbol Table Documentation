@@ -1,0 +1,15 @@
+SYMBOL_TABLE_NODE: a node for the binary search tree
+                   since it's a node in a binary tree, it contains references to the left and right branches
+                   it also contains the name of the identifier/constant
+
+SymbolTable: a class containing a symbol table represented as a binary search tree
+             it has two fields:
+                size: the nr of elements in the symbol table
+                startNode: a pointer to a SYMBOL_TABLE_NODE representing the root of the binary tree
+
+             it contains the following public method:
+                long long addElementToSymbolTable(char* name):
+                    arguments: the name of an identifier/constant
+                    when called, it will either:
+                        add a new node to the symbol table and return it's position
+                        just return the position if the element already exists in the symbol table
