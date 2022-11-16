@@ -1,0 +1,58 @@
+FINITE AUTOMATA DOCUMENTATION
+
+class FA:
+	FA(file_name)
+		Arguments:
+			file_name - string: A string that contains the name of the input file that contains the finite automata (The file must respect the structure from "FA.IN MODEL.txt")
+
+		Usage:
+			Initializes the finite automata object with the data from file_name
+
+	listInitialState()
+		Usage:
+			Prints the initial state to the console
+
+	listFinalStates()
+		Usage:
+			Prints the final states to the console
+
+	listStates()
+		Usage:
+			Prints all the states to the console
+
+	listAlphabet()
+		Usage:
+			Prints the alphabet to the console
+
+	listTransitions()
+		Usage:
+			Prints all the transitions to the console (the format being (a, x) = b, equivalent to (a, x) |- b)
+
+	bool checkDFA(path, result)
+		Arguments:
+			path - string: the string that contains the sequence to be checked
+			result - bool: if the function returns true, this element will be set to true if the sequence is correct, and to false otherwise
+
+		Returns:
+			Returns true if the FA is a DFA, false otherwise
+
+		Usage:
+			Checks if a sequence is accepted by the FA in case it is a DFA
+
+MAIN MENU:
+	Commands:
+		1 - Prints all the states of the FA by calling listStates()
+
+		2 - Prints the initial state of the FA by calling listStates()
+
+		3 - Prints the list of final states of the FA by calling listFinalStates()
+
+		4 - Prints the alphabet of the FA by calling listAlphabet()
+
+		5 - Prints all the transitions by calling listTransitions()
+
+		6 - Checks for DFA and, if it is, checks if a sequence is correct
+			Possible results:
+				Good!      - The sequence is correct
+				Bad!       - The sequence is incorrect
+				Not a DFA! - The FA is not a DFA
